@@ -41,7 +41,7 @@ Earlier versions may also work but haven’t been tested.
 2. Clone CRMEB application code:
     
     ```bash
-    git clone [https://gitee.com/ZhongBangKeJi/CRMEB](https://gitee.com/ZhongBangKeJi/CRMEB)
+    git clone https://gitee.com/ZhongBangKeJi/CRMEB.git
     ```
     
 3. Check you have the folder structure like this(both repos sit on the same level)
