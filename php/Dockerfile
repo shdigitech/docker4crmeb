@@ -12,8 +12,9 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions bcmath gd fileinfo pcntl redis swoole uploadprogress
+RUN docker-php-ext-enable bcmath pcntl redis swoole
 
 # Start supervisord
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
-# COPY ./extensions/swoole_loader74.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902/swoole_loader74.so
+COPY ./extension/swoole_loader74.so /usr/local/lib/php/extensions/no-debug-non-zts-20190902/swoole_loader74.so
