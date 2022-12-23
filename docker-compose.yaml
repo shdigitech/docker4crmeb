@@ -38,8 +38,8 @@ services:
 
   php-fpm:
     container_name: crmeb_php
-    # image: registry.cn-shanghai.aliyuncs.com/elvin-docker/php4crmeb:7.4
-    build: ./php
+    image: registry.cn-shanghai.aliyuncs.com/elvin-docker/php4crmeb:7.4
+    # build: ./php
     restart: unless-stopped
     environment:
       TZ: Asia/Shanghai
