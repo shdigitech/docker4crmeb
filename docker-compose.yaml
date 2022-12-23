@@ -14,7 +14,7 @@ services:
       - service
 
   mysql:
-    image: mariadb # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+    image: mysql # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     container_name: crmeb_mysql
     expose:
       - 3306
@@ -86,6 +86,8 @@ services:
       - ./nginx/sites:/etc/nginx/sites-available
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
+      - ../CRMEB/crmeb:/var/www #程序运行目录
+      - ../CRMEB/crmeb/runtime:/var/www/temp #程序缓存目录
     networks:
       - application
 
