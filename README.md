@@ -64,7 +64,7 @@ Earlier versions may also work but haven’t been tested.
     
     ```bash
     cd docker4crmeb
-    docker compose up -d
+    docker compose pull php-fpm && docker compose up -d
     ```
     
     <aside>
