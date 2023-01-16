@@ -48,6 +48,7 @@ services:
     expose:
       - 20002
       - 20003
+      - 20199 # PRO
     tmpfs: /var/temp #上传临时文件夹
     working_dir: /var/www
     tty: true
