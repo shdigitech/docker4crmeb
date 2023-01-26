@@ -14,7 +14,7 @@ services:
       - service
 
   mysql:
-    image: mysql # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+    image: mysql:5.7 # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     container_name: crmeb_mysql
     expose:
       - 3306
@@ -39,25 +39,23 @@ services:
     restart: unless-stopped
 
   php-fpm:
+    profiles: [ "open" ]
     container_name: crmeb_php
-    image: registry.cn-shanghai.aliyuncs.com/elvin-docker/php4crmeb:7.4
-    # build: ./php
+    build: ./php4open
     restart: unless-stopped
     environment:
       TZ: Asia/Shanghai
     expose:
       - 20002
       - 20003
-      - 20199 # PRO
     tmpfs: /var/temp #上传临时文件夹
     working_dir: /var/www
     tty: true
     volumes:
       - ../CRMEB/crmeb:/var/www #程序运行目录
       - ../CRMEB/crmeb/runtime:/var/www/temp #程序缓存目录
-      - ./php/php.ini:/usr/local/etc/php/php.ini
-      - ./php/conf.d:/usr/local/etc/php/conf.d
-      - ./php/supervisor:/etc/supervisor
+      - ./php4open/php.ini:/usr/local/etc/php/php.ini
+      - ./php4open/supervisor:/etc/supervisor
     networks:
       - application
       - service
