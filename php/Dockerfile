@@ -26,3 +26,8 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions pcntl swoole uploadprogress
 RUN docker-php-ext-enable imagick pcntl redis swoole
+
+
+COPY docker-php-entrypoint.sh /usr/local/bin/
+RUN ["chmod", "+x", "/usr/local/bin/docker-php-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-php-entrypoint.sh"]

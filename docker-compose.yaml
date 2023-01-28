@@ -39,35 +39,37 @@ services:
     restart: unless-stopped
 
   php-fpm:
-    profiles: [ "open" ]
     container_name: crmeb_php
-    build: ./php4open
+    build: ./php
     restart: unless-stopped
     environment:
       TZ: Asia/Shanghai
     expose:
       - 20002
       - 20003
+      - 20012
     tmpfs: /var/temp #上传临时文件夹
     working_dir: /var/www
     tty: true
     volumes:
       - ../CRMEB/crmeb:/var/www #程序运行目录
       - ../CRMEB/crmeb/runtime:/var/www/temp #程序缓存目录
-      - ./php4open/php.ini:/usr/local/etc/php/php.ini
-      - ./php4open/supervisor:/etc/supervisor
+      - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/supervisor:/etc/supervisor
+      - ./logs/php:/var/log/php/
+      - ./logs/supervisor:/var/log/supervisor/
     networks:
       - application
       - service
       - database
-    command:
-      - /bin/sh
-      - -c
-      - |
-        php think workerman start --d
-        php think timer start --d
-        /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
-        php-fpm
+    # command:
+    #   - /bin/sh
+    #   - -c
+    #   - |
+    #     php think workerman start --d
+    #     php think timer start --d
+    #     /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+    #     php-fpm
 
   nginx:
     container_name: crmeb_nginx
@@ -80,8 +82,6 @@ services:
     environment:
       TZ: Asia/Shanghai
     working_dir: /var/www
-    volumes_from:
-      - php-fpm
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/sites:/etc/nginx/sites-available
