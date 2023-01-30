@@ -118,6 +118,6 @@ Earlier versions may also work but haven’t been tested.
 
 1. If you see notifications indicating background jobs(queue, timer, etc.) are not enabled after you login into the admin page, restarting the containers should solve it.
 
-```bash
-docker compose restart
-```
+    ```bash
+    docker compose restart
+    ```
