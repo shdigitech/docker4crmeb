@@ -64,17 +64,15 @@ Earlier versions may also work but haven’t been tested.
     
     ```bash
     cd docker4crmeb
-    docker compose pull php-fpm && docker compose up -d
+    docker compose up -d
     ```
     
     <aside>
-    💡 First time build might take a while depending on your hardware configuration, be patient.
-    
+    💡 First time building might take a while depending on your hardware configuration, be patient.    
     </aside>
     
     <aside>
-    💡 Omitting the ‘-d’ parameter will output a bunch of logs on the console, which could be helpful for debugging. Note that pressing Ctrl + C or closing the console window will shutdown all containers.
-    
+    💡 Omitting the ‘-d’ parameter will output a bunch of logs on the console, which could be helpful for debugging. Note that pressing Ctrl + C or closing the console window will shutdown all containers.    
     </aside>
     
 6. Now open your favorite browser and navigate to
@@ -103,8 +101,7 @@ Earlier versions may also work but haven’t been tested.
     2. [http://localhost:28038/admin](http://localhost:28038/admin)
     
     <aside>
-    💡 Note: at the time of writing this document, CRMEB has a bug that the admin page will redirect to its login page on port 80 instead of our custom port, simply add the port number back to the login page URL and you should be able to access the login page.
-    
+    💡 Note: at the time of writing this document, CRMEB has a bug that the admin page will redirect to its login page on port 80 instead of our custom port, simply add the port number back to the login page URL and you should be able to access the login page.    
     </aside>
     
 9. This docker-compose combo also packs a PHPMYADMIN for easy database access, you can find it at
@@ -116,3 +113,11 @@ Earlier versions may also work but haven’t been tested.
     ```bash
     docker compose down
     ```
+    
+## Notes
+
+1. If you see notifications indicating background jobs(queue, timer, etc.) are not enabled after you login into the admin page, restarting the containers should solve it.
+
+```bash
+docker compose restart
+```
